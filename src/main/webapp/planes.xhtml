@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>#{airlinePlanes.airline.airline_name} planes:</h2>
+    <ol>
+        <ui:repeat value="#{airlinePlanes.airline.planeList}" var="planes">
+            <li>
+                <h5>#{planes.plane_no}  #{planes.pilot}</h5>
+            </li>
+        </ui:repeat>
+    </ol>
+    <br></br>
+    <h:form>
+        <h:inputText a:placeholder="plane_no" value="#{airlinePlanes.planeToCreate.plane_no}" required="true" />
+        <h:inputText a:placeholder="pilot_id" value="#{airlinePlanes.planeToCreate.pilot}" required="true" />
+        <h:commandButton value="Add airlines planes"
+                         actionListener="#{airlinePlanes.createPlane}"
+                         action="#{'planes?faces-redirect=true&amp;airlineId='.concat(airlinePlanes.airline.airline_id)}">
+            <f:param name="airlineId" value="#{airlinePlanes.airline.airline_id}" />
+        </h:commandButton>
+
+    </h:form>
+    <br></br>
+    <br></br>
+    <h:link outcome="index" value="Back to airlines page"/>
+    <!--    <h:link value="Back to albums page" onclick="history.go(-2)"/>-->
+    <!--    <h:commandLink onclick="history.go(-1)"/>-->
+    <!--    <h:link outcome="albums" value="Back to albums page"/>-->
+</h:body>
+</html>

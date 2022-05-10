@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>MyBatis Airlines:</h2>
+    <ol>
+        <ui:repeat value="#{airlinesMyBatis.airlinesList}" var="airline">
+            <li><h:link value="#{airline.airlineName}" outcome="plane?airlineId=#{airline.airlineId}"/> </li>
+        </ui:repeat>
+    </ol>
+    <br></br>
+    <h:form>
+        <h:inputText value="#{airlinesMyBatis.airlinesToCreate.airlineName}" required="true" />
+        <h:commandButton value="Add new airline" action="#{airlinesMyBatis.createAirline}" />
+    </h:form>
+    <br></br>
+    <br></br>
+    <h:link value="Back to index" outcome="/index"/>
+</h:body>
+</html>

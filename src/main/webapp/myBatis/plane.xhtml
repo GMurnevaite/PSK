@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>#{airlinePlanes.airline.airline_name} Mybatis planes:</h2>
+    <ol>
+        <ui:repeat value="#{airlinePlanes.airline.planeList}" var="planes">
+            <li>
+                <h3> #{planes.plane_no} #{planes.plane_id}</h3>
+            </li>
+        </ui:repeat>
+    </ol>
+    <br></br>
+    <h:form>
+        <h:inputText a:placeholder="Plane number" value="#{airlinePlanes.planeToCreate.plane_no}" required="true" />
+        <h:inputText a:placeholder="Pilot Id" value="#{airlinePlanes.planeToCreate.pilot}" required="true" />
+        <h:commandButton value="Add airlines plane"
+                         actionListener="#{airlinePlanes.createPlane}"
+                         action="#{'planes?faces-redirect=true&amp;airlineId='.concat(airlinePlanes.airline.airline_id)}">
+            <f:param name="airlineID" value="#{airlinePlanes.airline.airline_id}" />
+        </h:commandButton>
+    </h:form>
+    <br></br>
+    <br></br>
+    <h:link outcome="/myBatis/airlines" value="Back to myBatis airline page"/>
+</h:body>
+</html>

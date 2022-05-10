@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>#{airlinePilots.airline.airline_name} pilots:</h2>
+    <ol>
+        <ui:repeat value="#{airlinePilots.airline.pilotsList}" var="pilots">
+            <li>
+            <h4>#{pilots.pilot_name}</h4>
+            </li>
+        </ui:repeat>
+    </ol>
+    <br></br>
+    <h:form>
+        <h:inputText a:placeholder="Pilot name" value="#{airlinePilots.pilotToCreate.pilot_name}" required="true" />
+<!--        <h:inputText a:placeholder="airline_name" value="#{airlinePilots.pilotToCreate.airline_name}" required="true" />-->
+        <f:param name="airline_name" value="#{airlinePilots.airline.airline_name}" />
+        <h:commandButton value="Add pilot"
+                         actionListener="#{airlinePilots.createPilot}"
+                         action="#{'pilots?faces-redirect=true&amp;airlineId='.concat(airlinePilots.airline.airline_id)}">
+            <f:param name="airlineId" value="#{airlinePilots.airline.airline_id}" />
+        </h:commandButton>
+    </h:form>
+    <br></br>
+    <br></br>
+    <h:link outcome="index" value="Back to airlines page"/>
+</h:body>
+</html>

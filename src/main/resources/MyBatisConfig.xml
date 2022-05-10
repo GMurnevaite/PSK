@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="vu.psk1lab.mybatis.model.Airline" alias="Airline"/>
+        <typeAlias type="vu.psk1lab.mybatis.model.Pilot" alias="Pilot"/>
+        <typeAlias type="vu.psk1lab.mybatis.model.Plane" alias="Plane"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="MANAGED"/>
+            <dataSource type="JNDI">
+                <property name="data_source" value="AirlineDataSource"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mybatis.xml/AirlineMapper.xml"/>
+        <mapper resource="mybatis.xml/PilotMapper.xml"/>
+        <mapper resource="mybatis.xml/PlaneMapper.xml"/>
+    </mappers>
+</configuration>
