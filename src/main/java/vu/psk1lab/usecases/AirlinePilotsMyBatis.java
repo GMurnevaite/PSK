@@ -6,6 +6,8 @@ import vu.psk1lab.mybatis.dao.AirlineMapper;
 import vu.psk1lab.mybatis.dao.PilotMapper;
 import vu.psk1lab.mybatis.model.Airline;
 import vu.psk1lab.mybatis.model.Pilot;
+import vu.psk1lab.qualifiers.Asia;
+import vu.psk1lab.qualifiers.PilotTypeProcessor;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -23,6 +25,9 @@ public class AirlinePilotsMyBatis {
 
     @Inject
     PilotMapper pilotMapper;
+
+    @Inject @Asia
+    PilotTypeProcessor pilotTypeProcessorAsia;
 
     @Getter
     @Setter
@@ -50,6 +55,7 @@ public class AirlinePilotsMyBatis {
     @Transactional
     public void createPilot(){
         pilotToCreate.setAirline(this.airline.getAirlineName());
+        System.out.println(pilotTypeProcessorAsia.PilotType());
     }
 
 

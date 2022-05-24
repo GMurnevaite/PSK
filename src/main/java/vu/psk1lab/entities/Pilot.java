@@ -31,8 +31,9 @@ public class Pilot implements Serializable {
     @Column(name = "AIRLINE")
     private String airline_name;
 
-//    @Column(name = "Plane_ID")
-//    private String plane_id;
+    @Version
+    @Column(name = "OPT_LOCK_VERSION", columnDefinition = "integer default 0")
+    private Integer version;
 
     @ManyToMany(mappedBy = "pilotList")
     private List<Plane> planeList = new ArrayList<>();

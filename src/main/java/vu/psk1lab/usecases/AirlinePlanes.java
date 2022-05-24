@@ -2,12 +2,14 @@ package vu.psk1lab.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
+import vu.psk1lab.decorators.AirlineDecorator;
 import vu.psk1lab.entities.Airline;
 import vu.psk1lab.entities.Plane;
 import vu.psk1lab.persistence.AirlineDAO;
 import vu.psk1lab.persistence.PlaneDAO;
 
 import javax.annotation.PostConstruct;
+import javax.decorator.Delegate;
 import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -17,6 +19,9 @@ import java.util.Map;
 
 @Model
 public class AirlinePlanes implements Serializable {
+
+    @Inject
+    private AirlineDecorator airlineDecorator;
 
     @Inject
     private PlaneDAO planesDAO;
@@ -44,5 +49,6 @@ public class AirlinePlanes implements Serializable {
     public void createPlane(){
         planeToCreate.setAirline(this.airline);
         planesDAO.persist(planeToCreate);
+        System.out.println("Decorator implementation: " + airlineDecorator.DecoratedInt(2));
     }
 }

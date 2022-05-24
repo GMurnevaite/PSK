@@ -4,6 +4,7 @@ package vu.psk1lab.usecases;
 import lombok.Getter;
 import lombok.Setter;
 import vu.psk1lab.entities.Airline;
+import vu.psk1lab.interceptors.LoggedInvocation;
 import vu.psk1lab.persistence.AirlineDAO;
 
 import javax.annotation.PostConstruct;
@@ -30,6 +31,7 @@ public class Airlines {
     public void init() { loadAllAirlines();}
 
     @Transactional
+    @LoggedInvocation
     public void createAirline(){ this.airlineDAO.persist(airlineToCreate);}
 
     private void loadAllAirlines(){
